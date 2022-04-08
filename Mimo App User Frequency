@@ -1,0 +1,9 @@
+INSERT INTO mimo_app (id, name, age, usage_level, points) VALUES (1, "krystal", 30, "mod frequency", 1000);
+INSERT INTO mimo_app (id, name, age, usage_level, points) VALUES (2, "Sara", 27, "high frequency", 2000);
+INSERT INTO mimo_app (id, name, age, usage_level, points) VALUES (3, "Dinky", 8, "low frequency", 50);
+
+UPDATE mimo_app SET points = 200 WHERE id=3;
+SELECT * FROM mimo_app;
+
+DELETE FROM mimo_app WHERE id=3;
+SELECT * FROM mimo_app;
