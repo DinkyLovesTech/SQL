@@ -1,0 +1,13 @@
+CREATE TABLE gym_items (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, color TEXT, resistance_level TEXT, cost INTEGER);
+INSERT INTO gym_items VALUES (1, "resistance bands", 4, "red", "intermediate", 15);
+INSERT INTO gym_items VALUES (2, "resistance bands", 5, "blue", "hard", 15);
+INSERT INTO gym_items VALUES (3, "hyperloops", 3, "yellow", "beginner", 20); 
+INSERT INTO gym_items VALUES (4, "kettlebells", 1, "pink", "expert", 35);
+INSERT INTO gym_items VALUES (5, "vigor gym", 1, "grey", "all levels", 500);
+INSERT INTO gym_items VALUES (6, "Nu-Step", 1, "green", "all levels", 900);
+SELECT * FROM gym_items;
+SELECT * FROM gym_items;
+SELECT * FROM gym_items;
+SELECT * FROM gym_items;
+
+SELECT name, SUM(quantity) from gym_items GROUP BY id;
