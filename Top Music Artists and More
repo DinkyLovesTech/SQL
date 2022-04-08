@@ -1,0 +1,56 @@
+CREATE TABLE famous_persons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artistname TEXT,
+    first_album TEXT,
+    genre TEXT);
+    
+INSERT INTO famous_persons (artistname, first_album, genre) VALUES ("Kehlani", "Cloud 19", "R&B/Soul");
+INSERT INTO famous_persons (artistname, first_album, genre) VALUES ("070 Shake", "Modus Vivendi", "Psychedelic R&B Emo Rap");
+INSERT INTO famous_persons (artistname, first_album, genre) VALUES ("Lil Nas X", "Montero", "Electropop");
+INSERT INTO famous_persons (artistname, first_album, genre) VALUES ("Janelle Monáe", "The ArchAndroid", "Pop Music");
+INSERT INTO famous_persons (artistname, first_album, genre) VALUES ("Big Freedia", "Stupid Boy", "Pop Music");
+    
+CREATE table hobbies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    hobbie_name TEXT);
+
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (1, "gardening");
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (1, "singing");
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (2, "writing poetry");
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (3, "modeling");
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (4, "television actress");
+INSERT INTO hobbies (person_id, hobbie_name) VALUES (5, "decorating+working with flowers");
+
+
+CREATE table education (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist_id TEXT,
+    school_name TEXT,
+    year_attended INTEGER,
+    major TEXT);
+    
+INSERT INTO education (artist_id, school_name, year_attended, major)
+    VALUES ("Kehlani", "SWTJC", 2013, "Welding");
+INSERT INTO education (artist_id, school_name, year_attended, major)
+    VALUES ("070 Shake", "CCWINN", 2010, "Band");
+INSERT INTO education (artist_id, school_name, year_attended, major)
+    VALUES ("Lil Nas X", "WTC", 2016, "Dancing");
+INSERT INTO education (artist_id, school_name, year_attended, major)
+    VALUES ("Janelle Monáe", "TAMU", 2017, "Horiculture");
+INSERT INTO education (artist_id, school_name, year_attended, major)
+    VALUES ("Big Freedia", "UTEP", 2021, "Fashion design");
+    
+SELECT famous_persons.artistname, hobbies.hobbie_name, education.major AS college_major
+    FROM famous_persons
+    LEFT OUTER JOIN hobbies
+    ON famous_persons.id = hobbies.person_id
+    LEFT OUTER JOIN education
+    ON famous_persons.artistname = education.artist_id;
+
+SELECT famous_persons.id, famous_persons.artistname, famous_persons.genre, hobbies.hobbie_name, education.major AS college_major
+    FROM famous_persons
+    LEFT OUTER JOIN hobbies
+    ON famous_persons.id= hobbies.person_id
+    LEFT OUTER JOIN education 
+    ON famous_persons.artistname = education.artist_id;
