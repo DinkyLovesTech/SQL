@@ -60,3 +60,101 @@ ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 
 ##ANSWER: 890 , 3.85
+
+####SQLite Studio Part 2####
+
+##1. 
+SELECT orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+
+ANS: 
+
+##2. 
+SELECT location
+FROM BIT_DB.FebSales 
+WHERE orderdate = '02/18/19 01:35'
+
+ANS:
+
+##3. 
+SELECT sum(quantity)
+FROM BIT_DB.FebSales 
+WHERE orderdate like '02/18/19%'
+
+ANS:
+
+##1. 
+SELECT distinct Product
+FROM BIT_DB.FebSales
+WHERE Product like '%Batteries%'
+
+##2. 
+SELECT distinct Product, Price
+FROM BIT_DB.FebSales 
+WHERE Price like '%.99'
+
+##3 List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT Product, sum(Product)
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY Product
+
+####SQLite Studio Part 3####
+
+How many locations are there in New York that sold more than 1 product in January?
+SELECT location, product, sum(quantity)
+FROM BIT_DB.JanSales
+WHERE location like '%New York%'
+AND quantity > 1
+GROUP BY product;
+
+OR
+
+SELECT count(distinct location)
+FROM BIT_DB.JanSales
+WHERE location like '%New York%'
+AND quantity > 1
+
+How many of each type of headphone were sold in February?
+
+SELECT sum(quantity), product
+FROM BIT_DB.FebSales
+WHERE product like '%headphone%'
+GROUP BY Product
+
+ANS: 1013 apple airpods, 844 bose headphones, 1282 wired headphones
+
+What was the average amount spent per account in February? 
+SELECT AVG(quantity*price)
+FROM BIT_DB.FebSales f
+LEFT JOIN BIT_DB.customers c
+ON f.orderID = c.order_id
+
+OR 
+
+SELECT (sum(price))/(count(orderID))
+FROM BIT_DB.FebSales f
+
+LEFT JOIN BIT_DB.customers c
+ON f.orderID = c.order_id
+
+What was the average quantity of products purchased per account in February? 
+SELECT SUM(quantity)/COUNT(c.acctnum)
+FROM BIT_DB.FebSales f
+
+LEFT JOIN BIT_DB.customers c
+ON f.orderid=c.order_id
+
+Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+SELECT product, SUM(price*quantity) AS total_rev
+FROM BIT_DB.JanSales 
+GROUP BY product
+ORDER BY SUM(price*quantity) DESC
+LIMIT 1
+
+ANS: macbook pro lap, 399500 
+
+
+
