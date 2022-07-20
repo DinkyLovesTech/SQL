@@ -18,3 +18,29 @@ AND car_model = 'Model S'
 
 PART 2
 
+SELECT p.name, p.license_id
+FROM person AS p
+JOIN drivers_license as d
+ON p.license_id=d.id
+WHERE d.id = 202298
+OR d.id = 291182 
+OR d.id = 918773
+
+NAMES given: miranda p, regina george, red korb
+
+SELECT name 
+FROM person as p
+JOIN facebook_event_checkin as FB
+ON p.id = FB.person_id 
+JOIN drivers_license as d
+ON  p.license_id = d.id
+WHERE event_name = 'SQL Symphony Concert' 
+AND date LIKE '201712%' 
+AND car_make = 'Tesla'
+AND car_model = 'Model S' 
+AND height between 65 and 67 
+AND hair_color = 'red' 
+AND gender='female'
+GROUP BY p.id having count(*) = 3 
+
+ANSWER: miranda priestly 
