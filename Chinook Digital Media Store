@@ -1,0 +1,65 @@
+//This dataset represents a digital media store and includes data for artists, albums, media tracks, invoices, and customers
+
+//The following query extracts customers who are not in the US:
+
+SELECT CustomerId, FirstName, LastName, Country
+FROM chinook.customers
+WHERE country <> "USA"
+
+//Query that only selects customers from Brazil:
+
+SELECT CustomerId, FirstName, LastName, Country
+FROM chinook.customers
+WHERE country = "Brazil"
+
+//Query that finds customers from Brazil including their full name, invoiceID, date of invoice, and billing country
+
+SELECT c.FirstName, c.LastName, c.Country, i.InvoiceId, i.InvoiceDate, i.BillingCountry
+FROM chinook.customers as c
+LEFT JOIN chinook.invoices as i
+ON c.CustomerId=i.InvoiceId
+WHERE i.BillingCountry = "Brazil"
+
+//Query pulls data from employees who are sales agents 
+
+SELECT EmployeeId, LastName, FirstName, Title
+FROM chinook.employees
+WHERE title LIKE "%Sales%Agent%"
+
+//Distinct Countries from invoices table
+
+SELECT DISTINCT BillingCountry
+FROM chinook.invoices
+
+//Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+
+SELECT e.LastName, e.FirstName, i.InvoiceId
+FROM chinook.employees as e
+JOIN chinook.customers as c
+ON c.SupportRepId=e.EmployeeId
+JOIN chinook.invoices as i 
+ON i.CustomerId=c.CustomerId
+
+
+//Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+
+
+//How many Invoices were there in 2009?
+
+
+//What are the total sales for 2009?
+
+
+//Write a query that includes the purchased track name with each invoice line item.
+
+
+//Write a query that includes the purchased track name AND artist name with each invoice line item.
+
+
+//Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+
+
+//Show the total sales made by each sales agent.
+
+
+//Which sales agent made the most in sales in 2009?
